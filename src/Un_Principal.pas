@@ -72,7 +72,7 @@ end;
 procedure TForm_Principal.Button2Click(Sender: TObject);
 var Cliente:TClientes ;
     Email:TEMail;
-    Bory:TStrings;
+    Corpo:TMemo;
 begin
   Cliente := TClientes.Create;
   with Cliente do
@@ -95,13 +95,17 @@ begin
 
   CriarXMLcliente(Cliente);
 
+  Corpo := TMemo.Create(Self);
+  Corpo.Parent := Form_Principal;
+  Corpo.Name := 'CorpoEmail';
+  Corpo.Hide;
 
-  Bory := TStrings.Create;
-  Bory.Add('Cadastro de Cliente');
+  Corpo.Lines.Text := 'Cadastro de Cliente';
 
   Email := TEMail.Create;
-  Email.EnviarEmail('Cadastro de Cliente','logo_suporte@hotmail.com',ExtractFilePath(ParamStr(0)) +'Cliente.xml',Bory);
+  Email.EnviarEmail('Cadastro de Cliente','logo_suporte@hotmail.com',ExtractFilePath(ParamStr(0)) +'Cliente.xml',Corpo.Lines);
   FreeandNil(Email);
+  Corpo.Free;
 end;
 
 function TForm_Principal.CarregarCEP(pcep: String):TEndereco;
