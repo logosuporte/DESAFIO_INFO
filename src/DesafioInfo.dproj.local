@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2019/02/25 18:51:57.000.716,=C:\Users\logo\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/01/18 11:52:05.000.492,=C:\Users\logo\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/01/18 11:53:27.000.511,C:\Users\logo\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\LogoInformatica\DESAFIO_INFO\src\Un_Principal.dfm</Transaction>
+    <Transaction>2022/01/18 11:53:27.000.511,C:\Users\logo\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\LogoInformatica\DESAFIO_INFO\src\Un_Principal.pas</Transaction>
+    <Transaction>2022/01/18 11:53:44.000.812,C:\Users\logo\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\LogoInformatica\DESAFIO_INFO\src\DesafioInfo.dproj</Transaction>
+    <Transaction>2022/01/18 11:54:15.000.580,=C:\LogoInformatica\DESAFIO_INFO\src\Unit1.pas</Transaction>
+    <Transaction>2022/01/18 12:39:55.000.549,C:\LogoInformatica\DESAFIO_INFO\src\Unit1.pas=C:\LogoInformatica\DESAFIO_INFO\Modell\Modell.Cliente.pas</Transaction>
+    <Transaction>2022/01/19 11:34:30.000.002,=C:\LogoInformatica\DESAFIO_INFO\src\Unit1.pas</Transaction>
+    <Transaction>2022/01/19 11:35:09.000.559,C:\LogoInformatica\DESAFIO_INFO\src\Unit1.pas=C:\LogoInformatica\DESAFIO_INFO\Modell\Modell.Email.pas</Transaction>
+  </Transactions>
+</BorlandProject>
