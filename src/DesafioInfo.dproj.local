@@ -3,12 +3,35 @@
 	<Transactions>
     <Transaction>2019/02/25 18:51:57.000.716,=C:\Users\logo\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
     <Transaction>2022/01/18 11:52:05.000.492,=C:\Users\logo\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2022/01/18 11:53:27.000.511,C:\LogoInformatica\DESAFIO_INFO\src\Un_Principal.dfm=C:\Users\logo\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>2022/01/18 11:53:27.000.511,C:\LogoInformatica\DESAFIO_INFO\src\Un_Principal.pas=C:\Users\logo\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2022/01/18 11:53:44.000.812,C:\LogoInformatica\DESAFIO_INFO\src\DesafioInfo.dproj=C:\Users\logo\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2022/01/18 11:53:27.000.511,C:\Users\logo\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\LogoInformatica\DESAFIO_INFO\src\Un_Principal.dfm</Transaction>
+    <Transaction>2022/01/18 11:53:27.000.511,C:\Users\logo\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\LogoInformatica\DESAFIO_INFO\src\Un_Principal.pas</Transaction>
+    <Transaction>2022/01/18 11:53:44.000.812,C:\Users\logo\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\LogoInformatica\DESAFIO_INFO\src\DesafioInfo.dproj</Transaction>
     <Transaction>2022/01/18 11:54:15.000.580,=C:\LogoInformatica\DESAFIO_INFO\src\Unit1.pas</Transaction>
-    <Transaction>2022/01/18 12:39:55.000.549,C:\LogoInformatica\DESAFIO_INFO\Modell\Modell.Cliente.pas=C:\LogoInformatica\DESAFIO_INFO\src\Unit1.pas</Transaction>
+    <Transaction>2022/01/18 12:39:55.000.549,C:\LogoInformatica\DESAFIO_INFO\src\Unit1.pas=C:\LogoInformatica\DESAFIO_INFO\Modell\Modell.Cliente.pas</Transaction>
     <Transaction>2022/01/19 11:34:30.000.002,=C:\LogoInformatica\DESAFIO_INFO\src\Unit1.pas</Transaction>
-    <Transaction>2022/01/19 11:35:09.000.559,C:\LogoInformatica\DESAFIO_INFO\Modell\Modell.Email.pas=C:\LogoInformatica\DESAFIO_INFO\src\Unit1.pas</Transaction>
+    <Transaction>2022/01/19 11:35:09.000.559,C:\LogoInformatica\DESAFIO_INFO\src\Unit1.pas=C:\LogoInformatica\DESAFIO_INFO\Modell\Modell.Email.pas</Transaction>
+    <Transaction>2022/01/25 17:28:17.000.210,=C:\LogoInformatica\DESAFIO_INFO\src\Unit1.pas</Transaction>
+    <Transaction>2022/01/25 17:28:40.000.602,C:\LogoInformatica\DESAFIO_INFO\Modell\Modell.ClienteInterface.pas=C:\LogoInformatica\DESAFIO_INFO\src\Unit1.pas</Transaction>
+    <Transaction>2022/01/25 18:04:30.000.591,=C:\LogoInformatica\DESAFIO_INFO\src\Unit1.pas</Transaction>
+    <Transaction>2022/01/25 18:10:09.000.295,C:\LogoInformatica\DESAFIO_INFO\Modell\Modell.Endereco.pas=C:\LogoInformatica\DESAFIO_INFO\src\Unit1.pas</Transaction>
+    <Transaction>2022/01/25 19:09:41.000.828,=C:\LogoInformatica\DESAFIO_INFO\src\Unit1.pas</Transaction>
+    <Transaction>2022/01/25 19:14:45.000.514,C:\LogoInformatica\DESAFIO_INFO\Modell\Model.Validacoes.pas=C:\LogoInformatica\DESAFIO_INFO\src\Unit1.pas</Transaction>
+    <Transaction>2022/01/25 22:58:52.000.085,=C:\LogoInformatica\DESAFIO_INFO\src\Unit1.pas</Transaction>
+    <Transaction>2022/01/25 22:59:15.000.952,C:\LogoInformatica\DESAFIO_INFO\Modell\Model.CEP.pas=C:\LogoInformatica\DESAFIO_INFO\src\Unit1.pas</Transaction>
+    <Transaction>2022/01/25 23:14:54.000.784,=C:\LogoInformatica\DESAFIO_INFO\src\Unit1.pas</Transaction>
+    <Transaction>2022/01/25 23:15:16.000.005,C:\LogoInformatica\DESAFIO_INFO\Modell\Modell.CriarXML.pas=C:\LogoInformatica\DESAFIO_INFO\src\Unit1.pas</Transaction>
+    <Transaction>2022/01/25 23:55:09.000.227,=C:\LogoInformatica\DESAFIO_INFO\src\Unit1.pas</Transaction>
+    <Transaction>2022/01/25 23:56:03.000.357,C:\LogoInformatica\DESAFIO_INFO\Controller\Controller.BuscaCEP.pas=C:\LogoInformatica\DESAFIO_INFO\src\Unit1.pas</Transaction>
+    <Transaction>2022/01/26 00:31:19.000.408,=C:\LogoInformatica\DESAFIO_INFO\src\Unit1.pas</Transaction>
+    <Transaction>2022/01/26 00:31:40.000.227,C:\LogoInformatica\DESAFIO_INFO\Controller\Controller.BuscaCEP.interfaces.pas=C:\LogoInformatica\DESAFIO_INFO\src\Unit1.pas</Transaction>
+    <Transaction>2022/01/26 02:41:16.000.042,C:\LogoInformatica\DESAFIO_INFO\Modell\Modell.Cliente.pas=C:\LogoInformatica\DESAFIO_INFO\Modell\Model.Cliente.pas</Transaction>
+    <Transaction>2022/01/26 02:41:22.000.999,C:\LogoInformatica\DESAFIO_INFO\Modell\Modell.ClienteInterface.pas=C:\LogoInformatica\DESAFIO_INFO\Modell\Model.ClienteInterface.pas</Transaction>
+    <Transaction>2022/01/26 02:41:29.000.637,C:\LogoInformatica\DESAFIO_INFO\Modell\Modell.CriarXML.pas=C:\LogoInformatica\DESAFIO_INFO\Modell\Model.CriarXML.pas</Transaction>
+    <Transaction>2022/01/26 02:41:41.000.685,C:\LogoInformatica\DESAFIO_INFO\Modell\Modell.Email.pas=C:\LogoInformatica\DESAFIO_INFO\Modell\Model.Email.pas</Transaction>
+    <Transaction>2022/01/26 02:41:47.000.259,C:\LogoInformatica\DESAFIO_INFO\Modell\Modell.Endereco.pas=C:\LogoInformatica\DESAFIO_INFO\Modell\Model.Endereco.pas</Transaction>
+    <Transaction>2022/01/26 10:44:26.000.160,=C:\LogoInformatica\DESAFIO_INFO\src\Unit1.pas</Transaction>
+    <Transaction>2022/01/26 10:45:00.000.780,C:\LogoInformatica\DESAFIO_INFO\src\Unit1.pas=C:\LogoInformatica\DESAFIO_INFO\Controller\Controller.CriarXML.interfaces.pas</Transaction>
+    <Transaction>2022/01/26 10:49:16.000.961,=C:\LogoInformatica\DESAFIO_INFO\src\Unit1.pas</Transaction>
+    <Transaction>2022/01/26 10:50:06.000.202,C:\LogoInformatica\DESAFIO_INFO\src\Unit1.pas=C:\LogoInformatica\DESAFIO_INFO\Controller\Controller.CriarXML.pas</Transaction>
   </Transactions>
 </BorlandProject>

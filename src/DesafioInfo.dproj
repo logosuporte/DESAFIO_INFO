@@ -111,8 +111,17 @@
             <Form>Form_Principal</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\Modell\Modell.Cliente.pas"/>
-        <DCCReference Include="..\Modell\Modell.Email.pas"/>
+        <DCCReference Include="..\Model\Model.Cliente.pas"/>
+        <DCCReference Include="..\Model\Model.Email.pas"/>
+        <DCCReference Include="..\Model\Model.ClienteInterface.pas"/>
+        <DCCReference Include="..\Model\Model.Endereco.pas"/>
+        <DCCReference Include="..\Model\Model.Validacoes.pas"/>
+        <DCCReference Include="..\Model\Model.CEP.pas"/>
+        <DCCReference Include="..\Model\Model.CriarXML.pas"/>
+        <DCCReference Include="..\Controller\Controller.BuscaCEP.pas"/>
+        <DCCReference Include="..\Controller\Controller.BuscaCEP.interfaces.pas"/>
+        <DCCReference Include="..\Controller\Controller.CriarXML.interfaces.pas"/>
+        <DCCReference Include="..\Controller\Controller.CriarXML.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -284,6 +293,12 @@
             </Delphi.Personality>
             <Deployment Version="3">
                 <DeployFile LocalName="Win32\Debug\DesafioInfo.exe" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Win32">
+                        <RemoteName>DesafioInfo.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Release\DesafioInfo.exe" Configuration="Release" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>DesafioInfo.exe</RemoteName>
                         <Overwrite>true</Overwrite>

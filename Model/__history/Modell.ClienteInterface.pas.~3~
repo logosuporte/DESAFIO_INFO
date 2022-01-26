@@ -1,0 +1,51 @@
+unit Modell.ClienteInterface;
+
+interface
+Type
+  iEndereco<T> = interface;
+
+  iCliente = interface
+    function Email(Value:String): iCliente; overload;
+    function Email: String; overload;
+    function CPF(Value:String): iCliente; overload;
+    function CPF:String overload;
+    function Identidade(Value:String): iCliente; overload;
+    function Identidade: String; overload;
+    function Nome(Value:String): iCliente; overload;
+    function Nome: string;overload;
+    function Telefone(Value:String): iCliente; overload;
+    function Telefone: String; overload;
+    function Endereco :iEndereco<icliente>;
+  end;
+
+  iEndereco<T> = interface
+    function Logradouro(Value:String): iEndereco<T>; overload;
+    function Logradouro: String; overload;
+
+    function Bairro(Value:String): iEndereco<T>; overload;
+    function Bairro: String;
+
+    function Cep(Value:String): iEndereco<T>; overload;
+    function Cep: String;
+
+    function Numero(Value:String): iEndereco<T>; overload;
+    function Numero: integer;
+
+    function Complemento(Value:String): iEndereco<T>; overload;
+    function Complemento: String;
+
+    function Cidade(Value:String): iEndereco<T>; overload;
+    function Cidade: String;
+
+    function Pais(Value:String): iEndereco<T>; overload;
+    function Pais: String;
+
+    function Estado(Value:String): iEndereco<T>; overload;
+    function Estado: String;
+  end;
+
+
+
+implementation
+
+end.

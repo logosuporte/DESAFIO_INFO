@@ -5,23 +5,20 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Mask,
-  IdBaseComponent, IdComponent, IdTCPConnection, IdTCPClient, IdHTTP,
-  uCEFWinControl, uCEFLinkedWinControlBase, uCEFChromiumWindow,
-  uCEFChromiumCore, uCEFChromium, uCEFViewComponent, uCEFBrowserViewComponent,
-  uCEFLinkedWindowParent,System.JSON, Modell.Cliente,XMLDoc, XMLIntf;
+  Controller.BuscaCEP.interfaces, Model.ClienteInterface, Model.Cliente,
+  Controller.CriarXML, Vcl.Imaging.jpeg, Vcl.Menus, Model.Email;
 
 type
-  TEndereco = record
-    Logradouro :String;
-    Bairro     :String;
-    Cidade     :String;
-    UF         :String;
-    Pais       :String;
-  end;
 
   TForm_Principal = class(TForm)
-    Button1: TButton;
+    MainMenu1: TMainMenu;
+    PnlPrincipal: TPanel;
     Bevel1: TBevel;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    BtnIncluir: TButton;
     EditNome: TLabeledEdit;
     EditIdentidade: TLabeledEdit;
     EditEmail: TLabeledEdit;
@@ -32,25 +29,30 @@ type
     EditCidade: TLabeledEdit;
     EditUF: TLabeledEdit;
     EditPais: TLabeledEdit;
-    ComboboxEndereco: TComboBox;
-    Label1: TLabel;
-    Button2: TButton;
+    BtnSalvar: TButton;
     EditCPF: TMaskEdit;
-    Label2: TLabel;
-    Label3: TLabel;
     EditTelefone: TMaskEdit;
-    Label4: TLabel;
     EditCEP: TMaskEdit;
-    IdHTTP1: TIdHTTP;
-    procedure Button1Click(Sender: TObject);
+    CadastrodeCliente1: TMenuItem;
+    Clientes1: TMenuItem;
+    Image1: TImage;
+    Button1: TButton;
+    Panel1: TPanel;
+    procedure BtnIncluirClick(Sender: TObject);
     procedure EditCEPExit(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
+    procedure BtnSalvarClick(Sender: TObject);
+    procedure Clientes1Click(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
+    procedure LimparEdits;
+    procedure EnviarEmailCliente;
     { Private declarations }
   public
     { Public declarations }
-   function CarregarCEP(pcep:String):TEndereco;
-   procedure CriarXMLcliente(Cliente:TClientes);
+    // procedure para deixar o codigo mais limpo
+    // responsavel por gerar o xml local
+    procedure GravaXMLLocal(pCliente:TCliente);
+    procedure  escondeMostraPanel;
   end;
 
 var
@@ -58,134 +60,117 @@ var
 
 implementation
 
+uses
+  Model.CEP;
+
 {$R *.dfm}
 
-uses Modell.Email;
+procedure TForm_Principal.BtnIncluirClick(Sender: TObject);
+begin
+  LimparEdits;
+end;
 
+procedure TForm_Principal.BtnSalvarClick(Sender: TObject);
+var Cliente:iCliente ;
+begin
+  // estancia o objeto e pega os dados dos Edits
+  Cliente := TCliente.New;
+  Cliente.Nome(EditNome.Text)
+    .Identidade(EditIdentidade.Text)
+    .CPF(EditCPF.Text)
+    .Telefone(EditTelefone.Text)
+    .Email(EditEmail.Text)
+    .Endereco
+      .Logradouro(EditLogradouro.Text)
+      .Cep(EditCep.Text)
+      .Numero(StrtoInt(EditNumero.Text))
+      .Complemento(EditComplemento.Text)
+      .Bairro(EditBairro.Text)
+      .Cidade(EditCidade.Text)
+      .Estado(EditUF.Text)
+      .Pais(EditPais.Text)
+      .&End
+    .&End;
 
+  // pega os dados do objeto e gera um cxm na pasta local
+  GravaXMLLocal(Cliente as Tcliente);
+  // enviar e-mail para o cliente com o xml anexo
+  EnviarEmailCliente;
+end;
 
 procedure TForm_Principal.Button1Click(Sender: TObject);
 begin
-  EditNome.SetFocus;
+  escondeMostraPanel;
 end;
 
-procedure TForm_Principal.Button2Click(Sender: TObject);
-var Cliente:TClientes ;
-    Email:TEMail;
-    Corpo:TMemo;
+procedure TForm_Principal.Clientes1Click(Sender: TObject);
 begin
-  Cliente := TClientes.Create;
-  with Cliente do
-  begin
-    Nome        := EditNome.Text;
-    Identidade  := EditIdentidade.Text;
-    CPF         := EditCPF.Text;
-    Telefone    := EditTelefone.Text;
-    Email       := EditEmail.Text;
-    Endereco    := ComboboxEndereco.Text;
-    Cep         := EditCep.Text;
-    Logradouro  := EditLogradouro.Text;
-    Numero      := StrtoInt(EditNumero.Text);
-    Complemento := EditComplemento.Text;
-    Bairro      := EditBairro.Text;
-    Cidade      := EditCidade.Text;
-    Estado      := EditUF.Text;
-    Pais        := EditPais.Text;
-  end;
-
-  CriarXMLcliente(Cliente);
-
-  Corpo := TMemo.Create(Self);
-  Corpo.Parent := Form_Principal;
-  Corpo.Name := 'CorpoEmail';
-  Corpo.Hide;
-
-  Corpo.Lines.Text := 'Cadastro de Cliente';
-
-  Email := TEMail.Create;
-  Email.EnviarEmail('Cadastro de Cliente','logo_suporte@hotmail.com',ExtractFilePath(ParamStr(0)) +'Cliente.xml',Corpo.Lines);
-  FreeandNil(Email);
-  Corpo.Free;
+  escondeMostraPanel;
+  LimparEdits;
 end;
-
-function TForm_Principal.CarregarCEP(pcep: String):TEndereco;
-var
-  lodados:String;
-  JSonValue : TJSonValue;
-  st : string;
-  erro :string;
-
-  Endereco:TEndereco;
-begin
- if (Length(pcep) <> 8) then
-   raise Exception.Create('CEP inválido');
-
-  lodados := StringReplace(idhttp1.URL.URLDecode(idhttp1.Get('http://viacep.com.br/ws/'+pcep+'/json/')),'&',#13#10,[rfreplaceAll]);
-  st := lodados;
-  JsonValue := TJSonObject.ParseJSONValue(st);
-  erro := EmptyStr;
-  try
-    erro := JsonValue.GetValue<string>('erro');
-  except
-    erro := EmptyStr;;
-  end;
-
-  if erro <> EmptyStr then
-    raise Exception.Create('CEP não encontrado');
-
-  Endereco.Logradouro := JsonValue.GetValue<string>('logradouro');
-  Endereco.Bairro     := JsonValue.GetValue<string>('bairro');
-  Endereco.Cidade     := JsonValue.GetValue<string>('localidade');
-  Endereco.UF         := JsonValue.GetValue<string>('uf');
-  Endereco.Pais       := 'Brasil';
-
-  JsonValue.Free;
-  Result := Endereco;
-end;
-
-procedure TForm_Principal.CriarXMLcliente(Cliente:TClientes);
-var
-  XMLDocument: TXMLDocument;
-  NodeTabela, NodeRegistro, NodeEndereco: IXMLNode;
-  I: Integer;
-begin
- XMLDocument := TXMLDocument.Create(Self);
-  try
-    XMLDocument.Active := True;
-    NodeTabela := XMLDocument.AddChild('Clientes');
-
-    NodeRegistro := NodeTabela.AddChild('Registro');
-    NodeRegistro.ChildValues['Nome']       := Cliente.Nome;
-    NodeRegistro.ChildValues['Identidade'] := Cliente.Identidade;
-    NodeRegistro.ChildValues['CPF']        := Cliente.CPF;
-    NodeRegistro.ChildValues['Telefone']   := Cliente.Telefone;
-    NodeRegistro.ChildValues['Email']      := Cliente.Email;
-
-    NodeEndereco := NodeRegistro.AddChild('Endereco');
-    NodeEndereco.ChildValues['Cep']         := Cliente.Cep;
-    NodeEndereco.ChildValues['Logradouro']  := Cliente.Logradouro;
-    NodeEndereco.ChildValues['Numero']      := Cliente.Numero;
-    NodeEndereco.ChildValues['Complemento'] := Cliente.Complemento;
-    NodeEndereco.ChildValues['Bairro']      := Cliente.Bairro;
-    NodeEndereco.ChildValues['Cidade']      := Cliente.Cidade;
-    NodeEndereco.ChildValues['Estado']      := Cliente.Estado;
-    NodeEndereco.ChildValues['Pais']        := Cliente.Pais;
-
-    XMLDocument.SaveToFile('Cliente.xml');
-  finally
-    XMLDocument.Free;
-  end;
-  end;
 
 procedure TForm_Principal.EditCEPExit(Sender: TObject);
-var endereco:TEndereco;
+var endereco,EnderecoValido:iCEP; //RecEndereco;
 begin
-  endereco := CarregarCEP(EditCEP.Text);
-  EditLogradouro.Text := endereco.Logradouro;
-  EditBairro.Text     := endereco.Bairro;
-  EditCidade.Text     := endereco.Cidade;
-  EditUF.Text         := endereco.UF;
-  EditPais.Text       := endereco.Pais;
+  endereco            := tCEP.New();
+  EnderecoValido      := tCEP.New();
+  // busca o cep pelo consumo da API do via Cep, utilizando JSON;
+  EnderecoValido      := endereco.BuscaCEP(EditCEP.Text);
+  EditLogradouro.Text := EnderecoValido.Logradouro;
+  EditBairro.Text     := EnderecoValido.Bairro;
+  EditCidade.Text     := EnderecoValido.Cidade;
+  EditUF.Text         := EnderecoValido.UF;
+  EditPais.Text       := EnderecoValido.Pais;
+end;
+
+procedure TForm_Principal.escondeMostraPanel;
+begin
+  PnlPrincipal.Visible := not PnlPrincipal.Visible;
+  Image1.Visible       := not PnlPrincipal.Visible;
+end;
+
+procedure TForm_Principal.EnviarEmailCliente;
+var
+  CorpoEmail: TMemo;
+  Email: TEMail;
+begin
+  CorpoEmail := TMemo.Create(Self);
+  CorpoEmail.Parent := Form_Principal;
+  CorpoEmail.Name := 'Corpo E-mail';
+  CorpoEmail.Hide;
+  CorpoEmail.Lines.Text := 'Cadastro de Cliente';
+  Email := TEMail.Create;
+  Email.EnviarEmail('Cadastro de Cliente', 'logo_suporte@hotmail.com', ExtractFilePath(ParamStr(0)) + 'Cliente.xml', CorpoEmail.Lines);
+  FreeandNil(Email);
+  CorpoEmail.Free;
+end;
+
+procedure TForm_Principal.LimparEdits;
+begin
+  if Assigned(EditNome) then
+    EditNome.SetFocus;
+  EditNome.Clear;
+  EditIdentidade.Clear;
+  EditCPF.Clear;
+  EditTelefone.Clear;
+  EditEmail.Clear;
+  EditCEP.Clear;
+  EditNumero.Clear;
+  EditComplemento.Clear;
+  EditLogradouro.Clear;
+  EditBairro.Clear;
+  EditCidade.Clear;
+  EditPais.Clear;
+  EditUF.Clear;
+end;
+
+procedure TForm_Principal.GravaXMLLocal(pCliente:TCliente);
+var XML :TControllerXML;
+begin
+  // instacia o Objeto para pegar o metodo de criar xml
+  XML := TControllerXML.Create;
+  XML.CriarXMLcliente(pCliente,Self);
+  XML.Free;
 end;
 
 end.

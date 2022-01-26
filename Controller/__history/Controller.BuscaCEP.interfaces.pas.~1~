@@ -1,0 +1,7 @@
+unit Controller.BuscaCEP.interfaces;
+
+interface
+
+implementation
+
+end.

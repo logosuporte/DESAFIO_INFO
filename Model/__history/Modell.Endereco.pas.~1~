@@ -1,0 +1,24 @@
+unit Modell.Endereco;
+uses Modell.ClienteInterface;
+interface
+  TEndereco = class(t)
+  private
+    FLogradouro: String;
+    FBairro: String;
+    FCep: String;
+    FNumero: integer;
+    FComplemento: String;
+    FCidade: String;
+    FPais: String;
+    FEstado: String;
+
+  public
+
+  end;
+
+
+implementation
+
+
+
+end.

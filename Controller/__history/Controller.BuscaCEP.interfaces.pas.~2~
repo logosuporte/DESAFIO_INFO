@@ -1,0 +1,11 @@
+unit Controller.BuscaCEP.interfaces;
+
+interface
+  type
+    iCEP = Interface
+      function BuscaCEP(Value:String):iCEP;
+  End;
+
+implementation
+
+end.

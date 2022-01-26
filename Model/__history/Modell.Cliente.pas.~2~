@@ -1,0 +1,111 @@
+unit Modell.Cliente;
+
+interface
+uses SysUtils,  Modell.ClienteInterface;
+
+type
+  TCliente = Class(TInterfacedObject,iCliente)
+  private
+    FEmail:String;
+    FCPF:String;
+    FIdentidade:String;
+    FNome:String;
+    FTelefone:String;
+    //Endereco
+  public
+    constructor Create;
+    destructor Destroy; override;
+    class function New :iCliente;
+    function Email(Value:String): iCliente; overload;
+    function Email: String; overload;
+    function CPF(Value:String): iCliente; overload;
+    function CPF:String overload;
+    function Identidade(Value:String): iCliente; overload;
+    function Identidade: String; overload;
+    function Nome(Value:String): iCliente; overload;
+    function Nome: string;overload;
+    function Telefone(Value:String): iCliente; overload;
+    function Telefone: String; overload;
+    function Endereco :iEndereco<icliente>;
+  end;
+
+implementation
+{ TCliente }
+
+function TCliente.CPF: String;
+begin
+
+end;
+
+function TCliente.CPF(Value: String): iCliente;
+begin
+  Result := Self;
+end;
+
+constructor TCliente.Create;
+begin
+
+end;
+
+destructor TCliente.Destroy;
+begin
+  inherited;
+end;
+
+function TCliente.Email: String;
+begin
+  Result := FEmail;
+end;
+
+function TCliente.Email(Value: String): iCliente;
+begin
+  Result := Self;
+  FEmail := Value;
+end;
+
+function TCliente.Endereco: iEndereco<icliente>;
+begin
+  Result := TEndereco.New(Self)
+end;
+
+function TCliente.Identidade(Value: String): iCliente;
+begin
+  Result      := Self;
+  FIdentidade := Value;
+end;
+
+function TCliente.Identidade: String;
+begin
+  Result := FIdentidade;
+end;
+
+class function TCliente.New: iCliente;
+begin
+  Result := Self.Create;
+end;
+
+function TCliente.Nome: string;
+begin
+  Result := FNome;
+end;
+
+function TCliente.Nome(Value: String): iCliente;
+begin
+  Result := Self;
+  FNome  := Value;
+end;
+
+function TCliente.Telefone(Value: String): iCliente;
+begin
+  Result   := Self;
+  FTelefone := Value;
+end;
+
+function TCliente.Telefone: String;
+begin
+  Result := FTelefone;
+end;
+
+end.
+
+

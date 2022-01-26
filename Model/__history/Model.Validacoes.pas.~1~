@@ -1,0 +1,39 @@
+unit Model.Validacoes;
+
+interface
+uses  System.SysUtils;
+
+  type
+    TValidacoes =  class
+      class function GetStrNumber(const S: string): string;
+    end;
+
+
+implementation
+
+{ TValidacoes }
+
+
+{ TValidacoes }
+
+class function TValidacoes.GetStrNumber(const S: string): string;
+var
+  vText : PChar;
+begin
+  vText := PChar(S);
+  Result := '';
+
+  while (vText^ <> #0) do
+  begin
+    {$IFDEF UNICODE}
+    if CharInSet(vText^, ['0'..'9']) then
+    {$ELSE}
+    if vText^ in ['0'..'9'] then
+    {$ENDIF}
+      Result := Result + vText^;
+
+    Inc(vText);
+  end;
+end;
+
+end.
